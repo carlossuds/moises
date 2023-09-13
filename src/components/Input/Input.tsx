@@ -6,7 +6,7 @@ type Props = {
   hideIcon?: boolean;
   value?: string;
   placeholder?: string;
-  onChange?: (event: ChangeEvent) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const Input = ({ hideIcon, ...restProps }: Props) => {

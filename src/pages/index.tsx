@@ -1,27 +1,26 @@
 "use client";
-import { Nokora } from "next/font/google";
+
 import styles from "@/styles/Home.module.css";
 
-const nokora = Nokora({ weight: ["900"], subsets: ["latin"] });
-
 import { FavoriteFilter, Input, SongCard, Toggle } from "@/components";
-import { useFavoriteSongs } from "@/hooks";
+import { useDebounce, useFavoriteSongs } from "@/hooks";
 import { SongType } from "@/types";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
-type Props = {
-  searchParams: Record<string, string | Array<string> | undefined>;
-};
-
-export default function Home({ searchParams }: Props) {
+export default function Home() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isFavoriteFilterActive = searchParams.get("filter") === "favorites";
+  const isSortedAlphabetically = searchParams.get("sort") === "abc";
+  const searchFilter = searchParams.get("search");
+
   const [songs, setSongs] = useState<Array<SongType>>([]);
+  const [search, setSearch] = useState(searchFilter);
+
   const { favoriteSongs, addToFavorites, removeFromFavorites } =
     useFavoriteSongs();
-
-  const isFavoriteFilterActive = searchParams?.filter === "favorites";
-  const isSortedAlphabetically = searchParams?.sort === "abc";
+  const debouncedValue = useDebounce(search, 500);
 
   useEffect(() => {
     (async () => {
@@ -35,14 +34,58 @@ export default function Home({ searchParams }: Props) {
     })();
   }, []);
 
-  const handleToggle = () => {
+  useEffect(() => {
     const url = new URL(window.location.href);
-    url.searchParams.set("sort", isSortedAlphabetically ? "off" : "abc");
+    if (!debouncedValue) {
+      url.searchParams.delete("search");
+    } else {
+      url.searchParams.set("search", debouncedValue);
+    }
     router.replace(url.href);
-  };
+  }, [debouncedValue]);
+
+  const onToggleClick = useCallback(() => {
+    const url = new URL(window.location.href);
+    if (isSortedAlphabetically) {
+      url.searchParams.delete("sort");
+    } else {
+      url.searchParams.set("sort", "abc");
+    }
+    router.replace(url.href);
+  }, [router, isSortedAlphabetically]);
+
+  const filterBySearch = useCallback(
+    (song: SongType) => {
+      if (!search) {
+        return true;
+      }
+      const searchLowerCase = search?.toLowerCase();
+      return (
+        song.id.toString().toLowerCase().includes(searchLowerCase) ||
+        song.song.album.title.toLowerCase().includes(searchLowerCase) ||
+        song.song.album.year
+          .toString()
+          .toLowerCase()
+          .includes(searchLowerCase) ||
+        song.song.title.toLowerCase().includes(searchLowerCase) ||
+        song.song.artist.toLowerCase().includes(searchLowerCase)
+      );
+    },
+    [search]
+  );
+
+  const toggleSort = useCallback(
+    (a: SongType, b: SongType) => {
+      if (isSortedAlphabetically) {
+        return a.song.title > b.song.title ? 1 : -1;
+      }
+      return 1;
+    },
+    [isSortedAlphabetically]
+  );
 
   return (
-    <div className={`${styles.container} ${nokora.className}`}>
+    <div className={styles.container}>
       <div className={styles.content}>
         <header>
           <section>
@@ -60,9 +103,16 @@ export default function Home({ searchParams }: Props) {
           >
             <div className={styles.horizontal}>
               <span>Sort from A-Z</span>
-              <Toggle checked={isSortedAlphabetically} onClick={handleToggle} />
+              <Toggle
+                checked={isSortedAlphabetically}
+                onClick={onToggleClick}
+              />
             </div>
-            <Input placeholder="Search in your library" />
+            <Input
+              placeholder="Search in your library"
+              onChange={(event) => setSearch(event.target.value)}
+              value={search ?? ""}
+            />
           </section>
         </header>
 
@@ -71,12 +121,8 @@ export default function Home({ searchParams }: Props) {
             {!songs.length
               ? [...Array(5)].map((_, index) => <SongCard key={index} />)
               : [...songs]
-                  .sort((a, b) => {
-                    if (isSortedAlphabetically) {
-                      return a.song.title > b.song.title ? 1 : -1;
-                    }
-                    return 1;
-                  })
+                  .filter(filterBySearch)
+                  .sort(toggleSort)
                   .map((song) => {
                     const isFavorite = favoriteSongs.includes(song.id);
                     if (isFavoriteFilterActive && !isFavorite) {

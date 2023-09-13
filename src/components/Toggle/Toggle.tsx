@@ -9,7 +9,12 @@ type Props = {
 export const Toggle = ({ checked, onClick }: Props) => {
   return (
     <div className={styles.toggle}>
-      <input type="checkbox" id="switch" onClick={onClick} checked={checked} />
+      <input
+        type="checkbox"
+        id="switch"
+        onClick={onClick}
+        defaultChecked={checked}
+      />
       <label htmlFor="switch" />
     </div>
   );
