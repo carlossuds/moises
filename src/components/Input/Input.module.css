@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+}
+.container svg {
+  color: var(--white);
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+}
+
+.input {
+  border: 0;
+  padding: 0.625rem;
+  padding-left: 2rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff26;
+  height: 2.25rem;
+  color: var(--white);
+}
+
+.input::placeholder {
+  color: var(--white);
+}

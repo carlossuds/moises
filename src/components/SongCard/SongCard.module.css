@@ -1,0 +1,62 @@
+.card {
+  border-radius: 5px;
+  background-color: #262626;
+  width: 204px;
+  height: 282px;
+  overflow: hidden;
+}
+
+.card h3 {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card footer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.card footer h3 + div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  gap: 2rem;
+}
+
+.card footer span {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+.image_container {
+  height: 204px;
+  width: 204px;
+  position: relative;
+}
+
+.loading {
+  position: relative;
+  min-height: 1rem;
+}
+.loading::after {
+  animation: 2s linear 0.5s infinite normal;
+  background: #666666;
+  content: "";
+  position: absolute;
+  inset: 0px;
+}
+
+@keyframes loadingAnimation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}

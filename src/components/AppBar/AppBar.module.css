@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: var(--appBarHeight);
+  background-color: var(--gray900);
+  padding: var(--pagePadding);
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  max-width: var(--maxPageContentWidth);
+  display: flex;
+  align-items: center;
+  gap: 3.37rem;
+}
+
+.muse_ai {
+  font-family: "Nokora", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 120%;
+  color: transparent;
+  background: linear-gradient(180deg, #00f2d5 0%, #ad00ff 100%);
+  background-clip: text;
+}
