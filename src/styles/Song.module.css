@@ -6,20 +6,25 @@
   padding: 6rem;
   min-height: var(--pageHeight);
   background-color: #12303b;
+  background: linear-gradient(35deg, #12303b 50%, transparent 160%);
 }
 
 .container + img {
   position: absolute;
   right: 0;
   top: var(--appBarHeight);
+  z-index: 3;
 }
 
 .content {
   height: 100%;
   width: 100%;
+  min-width: 700px;
   max-width: var(--maxPageContentWidth);
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .content > span {
@@ -39,4 +44,17 @@
   height: 12.75rem;
   width: 12.75rem;
   position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #666666;
+  overflow: hidden;
+}
+
+.background_image {
+  height: 35rem;
+  width: 35rem;
+  position: absolute;
+  opacity: 0.3;
+  top: -9rem;
+  right: -5rem;
+  z-index: -1;
 }

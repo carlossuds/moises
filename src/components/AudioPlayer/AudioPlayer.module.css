@@ -10,6 +10,10 @@
   margin-bottom: 0.75rem;
 }
 
+.info h1 {
+  font-size: 2rem;
+}
+
 button.play {
   display: flex;
   align-items: center;

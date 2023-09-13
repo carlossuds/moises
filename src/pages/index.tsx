@@ -3,7 +3,7 @@
 import styles from "@/styles/Home.module.css";
 
 import { FavoriteFilter, Input, SongCard, Toggle } from "@/components";
-import { useDebounce, useFavoriteSongs } from "@/hooks";
+import { useFavoriteSongs } from "@/hooks";
 import { SongType } from "@/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -20,7 +20,6 @@ export default function Home() {
 
   const { favoriteSongs, addToFavorites, removeFromFavorites } =
     useFavoriteSongs();
-  const debouncedValue = useDebounce(search, 500);
 
   useEffect(() => {
     (async () => {
@@ -34,20 +33,6 @@ export default function Home() {
     })();
   }, []);
 
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    if (debouncedValue === null) {
-      setSearch(url.searchParams.get("search"));
-      return;
-    }
-    if (debouncedValue === "") {
-      url.searchParams.delete("search");
-    } else {
-      url.searchParams.set("search", debouncedValue);
-    }
-    router.replace(url.href);
-  }, [debouncedValue]);
-
   const onToggleClick = useCallback(() => {
     const url = new URL(window.location.href);
     if (isSortedAlphabetically) {
@@ -60,10 +45,10 @@ export default function Home() {
 
   const filterBySearch = useCallback(
     (song: SongType) => {
-      if (!searchFilter) {
-        return true;
+      if (!search) {
+        return false;
       }
-      const searchLowerCase = searchFilter?.toLowerCase();
+      const searchLowerCase = search?.toLowerCase();
       return (
         song.id.toString().toLowerCase().includes(searchLowerCase) ||
         song.song.album.title.toLowerCase().includes(searchLowerCase) ||
@@ -75,7 +60,7 @@ export default function Home() {
         song.song.artist.toLowerCase().includes(searchLowerCase)
       );
     },
-    [searchFilter]
+    [search]
   );
 
   const toggleSort = useCallback(
@@ -116,6 +101,7 @@ export default function Home() {
               placeholder="Search in your library"
               onChange={(event) => setSearch(event.target.value)}
               value={search ?? ""}
+              options={songs.filter(filterBySearch)}
             />
           </section>
         </header>
@@ -125,7 +111,7 @@ export default function Home() {
             {!songs.length
               ? [...Array(5)].map((_, index) => <SongCard key={index} />)
               : [...songs]
-                  .filter(filterBySearch)
+                  // .filter(filterBySearch)
                   .sort(toggleSort)
                   .map((song) => {
                     const isFavorite = favoriteSongs.includes(song.id);

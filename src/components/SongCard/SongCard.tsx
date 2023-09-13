@@ -27,7 +27,7 @@ export const SongCard = ({ id, song, isFavorite, onFavoriteSong }: Props) => {
 
   return (
     <li className={styles.card}>
-      <Link href={`/song/${id}`}>
+      <Link href={`/songs/${id}`}>
         <main className={styles.image_container}>
           <Image
             fill

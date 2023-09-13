@@ -65,54 +65,31 @@ export default function SongId() {
                 song={song}
                 onFavoriteClick={onFavoriteClick}
               />
-              {/* <div className={styles.player}>
-                <main>
-                  <button
-                    type="button"
-                    className={styles.play}
-                    onClick={() => setIsPlaying((prev) => !prev)}
-                  >
-                    {isPlaying ? <Pause /> : <Play />}
-                  </button>
-
-                  <div className={styles.info}>
-                    <div>
-                      <h1>{song.song.title}</h1>
-                      <button
-                        type="button"
-                        onClick={() => onFavoriteClick(song.id)}
-                      >
-                        {isFavorite ? <HeartFilled /> : <HeartOutline />}
-                      </button>
-                    </div>
-
-                    <span>
-                      {song.song.artist}
-                      &emsp;|&emsp;
-                      {song.song.album.title}
-                      &emsp;|&emsp;
-                      {song.song.album.year}
-                    </span>
-                  </div>
-                </main>
-                <footer>
-                  <audio ref={audioRef} controls>
-                    <source src="/audio/song-1.mp3" type="audio/mpeg" />
-                  </audio>
-                </footer>
-              </div> */}
             </section>
 
-            <span>Other albumns</span>
-            <section>
-              <ul>
-                {relatedSongs.map((song) => (
-                  <SongCard id={song.id} song={song.song} />
-                ))}
-              </ul>
-            </section>
+            {Boolean(relatedSongs.length) && (
+              <>
+                <span>Other albums</span>
+                <section>
+                  <ul>
+                    {relatedSongs.map((song) => (
+                      <SongCard id={song.id} song={song.song} />
+                    ))}
+                  </ul>
+                </section>
+              </>
+            )}
           </>
         )}
+
+        <div className={styles.background_image}>
+          <Image
+            fill
+            objectFit="contain"
+            alt={`${song?.song.artist} - ${song?.song.album.title}`}
+            src={`/assets/images/${song?.song.files.poster}`}
+          />
+        </div>
       </div>
     </div>
   );

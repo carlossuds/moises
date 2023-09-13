@@ -5,6 +5,8 @@
   height: var(--appBarHeight);
   background-color: var(--gray900);
   padding: var(--pagePadding);
+  z-index: 10;
+  position: relative;
 }
 
 .content {

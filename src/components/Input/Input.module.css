@@ -1,6 +1,29 @@
 .container {
   position: relative;
+  width: 22.5rem;
 }
+
+.container ul {
+  background-color: #2d2d2d;
+  position: absolute;
+  top: 3rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  z-index: 10;
+  max-height: 10rem;
+  overflow-y: scroll;
+  filter: drop-shadow(1px 1px 20px var(--black));
+}
+.container > ul li {
+  padding: 1rem;
+}
+.container > ul li:hover {
+  background-color: #ffffff40;
+}
+.container > ul li + li {
+  border-top: 1px solid #545454;
+}
+
 .container svg {
   color: var(--white);
   position: absolute;
@@ -9,6 +32,7 @@
 }
 
 .input {
+  width: 100%;
   border: 0;
   padding: 0.625rem;
   padding-left: 2rem;
@@ -16,6 +40,9 @@
   background-color: #ffffff26;
   height: 2.25rem;
   color: var(--white);
+}
+.input:focus {
+  background-color: #ffffff40;
 }
 
 .input::placeholder {

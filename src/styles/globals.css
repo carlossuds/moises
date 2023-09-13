@@ -28,6 +28,7 @@ a {
 * {
   box-sizing: border-box;
   color: var(--white);
+  font-family: inherit;
 }
 
 img {
