@@ -36,7 +36,11 @@ export default function Home() {
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (!debouncedValue) {
+    if (debouncedValue === null) {
+      setSearch(url.searchParams.get("search"));
+      return;
+    }
+    if (debouncedValue === "") {
       url.searchParams.delete("search");
     } else {
       url.searchParams.set("search", debouncedValue);
@@ -56,10 +60,10 @@ export default function Home() {
 
   const filterBySearch = useCallback(
     (song: SongType) => {
-      if (!search) {
+      if (!searchFilter) {
         return true;
       }
-      const searchLowerCase = search?.toLowerCase();
+      const searchLowerCase = searchFilter?.toLowerCase();
       return (
         song.id.toString().toLowerCase().includes(searchLowerCase) ||
         song.song.album.title.toLowerCase().includes(searchLowerCase) ||
@@ -71,7 +75,7 @@ export default function Home() {
         song.song.artist.toLowerCase().includes(searchLowerCase)
       );
     },
-    [search]
+    [searchFilter]
   );
 
   const toggleSort = useCallback(
