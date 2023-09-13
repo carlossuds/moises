@@ -17,4 +17,5 @@ export type SongType = {
     title: string;
     files: SongFilesType;
   };
+  related?: Array<number>;
 };

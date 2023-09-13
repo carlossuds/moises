@@ -1,4 +1,4 @@
-import { SongType } from "../../../moises2/src/types";
+import { SongType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { HeartFilled, HeartOutline } from "../icons";
@@ -42,9 +42,11 @@ export const SongCard = ({ id, song, isFavorite, onFavoriteSong }: Props) => {
         <h3>{song.title}</h3>
         <div>
           <span>{song.artist}</span>
-          <button type="button" onClick={() => onFavoriteSong?.(id)}>
-            <FavoriteIcon />
-          </button>
+          {onFavoriteSong && (
+            <button type="button" onClick={() => onFavoriteSong?.(id)}>
+              <FavoriteIcon />
+            </button>
+          )}
         </div>
       </footer>
     </li>

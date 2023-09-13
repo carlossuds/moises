@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: var(--pageHeight);
+  background-color: #12303b;
+}
+
+.container + img {
+  position: absolute;
+  right: 0;
+  top: var(--appBarHeight);
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  max-width: var(--maxPageContentWidth);
+  display: flex;
+  flex-direction: column;
+}
+
+.content > span {
+  color: #ffffffb2;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  margin-top: 6rem;
+}
+
+.content section,
+.container section ul {
+  display: flex;
+  gap: 2.25rem;
+}
+
+.image_container {
+  height: 12.75rem;
+  width: 12.75rem;
+  position: relative;
+}

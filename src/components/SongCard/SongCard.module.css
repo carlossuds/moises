@@ -1,9 +1,16 @@
 .card {
   border-radius: 5px;
   background-color: #262626;
-  width: 204px;
-  height: 282px;
+  width: 12.75rem;
+  height: 17.625rem;
   overflow: hidden;
+  transition: 1s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(2px 2px 2px var(--white))
+    drop-shadow(-2px -2px 2px var(--white));
 }
 
 .card h3 {
@@ -35,8 +42,8 @@
 }
 
 .image_container {
-  height: 204px;
-  width: 204px;
+  height: 12.75rem;
+  width: 12.75rem;
   position: relative;
 }
 

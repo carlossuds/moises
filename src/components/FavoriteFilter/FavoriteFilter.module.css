@@ -6,7 +6,19 @@
   border-radius: 1.5rem;
   background-color: #ffffff26;
 }
+.container:hover {
+  background-color: #ffffff40;
+}
+.container:active {
+  background-color: #ffffff80;
+}
 
 .active {
+  background-color: #ffffff40;
+}
+.active:hover {
+  background-color: #ffffff80;
+}
+.active:active {
   background-color: #ffffff40;
 }
