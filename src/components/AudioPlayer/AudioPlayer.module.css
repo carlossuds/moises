@@ -1,0 +1,26 @@
+.player main {
+  display: flex;
+  gap: 2.25rem;
+  align-items: center;
+}
+
+.info > div {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+button.play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 4rem;
+  background-color: var(--white);
+  color: var(--black);
+  transition: all 0.5s;
+}
+button.play:hover {
+  filter: drop-shadow(2px 2px 5px var(--white));
+}

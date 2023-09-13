@@ -76,3 +76,16 @@ body {
   line-height: 100%;
   font-family: "Articulat", helvetica, arial, sans-serif;
 }
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f;
+  border-radius: 0.25rem;
+}
