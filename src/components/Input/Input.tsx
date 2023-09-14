@@ -29,9 +29,11 @@ export const Input = ({ hideIcon, options, ...restProps }: Props) => {
 
       {Boolean(options.length) && showOptions && (
         <ul>
-          {options.map((song) => (
+          {options.map((song, index) => (
             <Link key={song.id} href={`/songs/${song.id}`}>
-              <li>{song.song.title}</li>
+              <li className={index > 1 ? styles.item_with_border : ""}>
+                {song.song.title}
+              </li>
             </Link>
           ))}
         </ul>

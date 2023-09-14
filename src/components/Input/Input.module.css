@@ -14,13 +14,17 @@
   overflow-y: scroll;
   filter: drop-shadow(1px 1px 20px var(--black));
 }
-.container > ul li {
-  padding: 1rem;
+.container > ul a {
+  display: block;
+  padding: 0 1rem;
 }
-.container > ul li:hover {
+.container > ul li {
+  padding: 1rem 0;
+}
+.container > ul a:hover {
   background-color: #ffffff40;
 }
-.container > ul li + li {
+.container > ul a + a li {
   border-top: 1px solid #545454;
 }
 
