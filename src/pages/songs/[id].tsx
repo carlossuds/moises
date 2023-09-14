@@ -41,7 +41,7 @@ export default function SongId() {
         console.log(error);
       }
     })();
-  }, [router.query.id]);
+  }, [router.query.id, fetchSong]);
 
   const isFavorite = Boolean(song?.id && favoriteSongs.includes(song?.id));
   const onFavoriteClick = isFavorite ? removeFromFavorites : addToFavorites;
@@ -73,7 +73,7 @@ export default function SongId() {
                 <section>
                   <ul>
                     {relatedSongs.map((song) => (
-                      <SongCard id={song.id} song={song.song} />
+                      <SongCard key={song.id} id={song.id} song={song.song} />
                     ))}
                   </ul>
                 </section>

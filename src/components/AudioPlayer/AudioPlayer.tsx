@@ -27,8 +27,6 @@ export const AudioPlayer = ({ isFavorite, song, onFavoriteClick }: Props) => {
     setIsPlaying(false);
   }, [song.id]);
 
-  console.log(song.song.files.audio);
-
   useEffect(() => {
     const id = setInterval(() => {
       const { duration = 0, currentTime = 0 } = audioRef.current ?? {};
@@ -60,11 +58,6 @@ export const AudioPlayer = ({ isFavorite, song, onFavoriteClick }: Props) => {
     audio.currentTime = (audio.duration / 100) * numberValue;
     setPercentage(numberValue);
   }, []);
-
-  console.log({
-    percentage,
-    duration: audioRef.current?.duration,
-  });
 
   return (
     <div className={styles.player}>
