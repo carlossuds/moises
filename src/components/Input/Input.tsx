@@ -1,4 +1,4 @@
-import { useDebounce } from "@/hooks";
+import { useTimeout } from "@/hooks";
 import { SongType } from "@/types";
 import Link from "next/link";
 import React, { ChangeEvent, useEffect, useState } from "react";
@@ -15,7 +15,7 @@ type Props = {
 
 export const Input = ({ hideIcon, options, ...restProps }: Props) => {
   const [showOptions, setShowOptions] = useState(false);
-  const { debounce } = useDebounce();
+  const { debounce } = useTimeout();
 
   return (
     <div className={styles.container}>

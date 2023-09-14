@@ -4,7 +4,7 @@ type ReturnType = {
   debounce: (callback: () => void, delay?: number) => void;
 };
 
-export const useDebounce = (): ReturnType => {
+export const useTimeout = (): ReturnType => {
   return {
     debounce: useCallback((callback, delay = 500) => {
       const timeoutId = setTimeout(() => callback(), delay);

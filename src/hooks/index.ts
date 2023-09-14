@@ -1,2 +1,2 @@
 export * from "./useFavoriteSongs";
-export * from "./useDebounce";
+export * from "./useTimeout";

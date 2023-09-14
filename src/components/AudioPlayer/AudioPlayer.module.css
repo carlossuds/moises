@@ -2,16 +2,24 @@
   display: flex;
   gap: 2.25rem;
   align-items: center;
+  margin-bottom: 2.5rem;
 }
 
 .info > div {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 0.75rem;
+  align-items: center;
 }
 
 .info h1 {
   font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+.info button {
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 button.play {
