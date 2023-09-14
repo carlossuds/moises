@@ -4,7 +4,7 @@
   width: 100%;
   height: var(--appBarHeight);
   background-color: var(--gray900);
-  padding: var(--pagePadding);
+  padding: 0 6rem;
   z-index: 10;
   position: relative;
 }

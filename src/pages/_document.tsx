@@ -1,4 +1,3 @@
-import { AppBar } from "@/components";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -11,7 +10,6 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
-        <AppBar />
         <Main />
         <NextScript />
       </body>

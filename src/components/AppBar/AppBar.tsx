@@ -7,12 +7,12 @@ const nokora = Nokora({ weight: ["900"], subsets: ["latin"] });
 
 export const AppBar = () => {
   return (
-    <Link href="/">
-      <div className={`${styles.container} ${nokora.className}`}>
-        <div className={styles.content}>
+    <div className={`${styles.container} ${nokora.className}`}>
+      <div className={styles.content}>
+        <Link href="/">
           <span className={styles.muse_ai}>MUSE.ai</span>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 };
