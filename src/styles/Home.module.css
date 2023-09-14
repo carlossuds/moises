@@ -45,3 +45,17 @@
   gap: 2rem;
   flex-wrap: wrap;
 }
+
+@media (max-width: 1104px) {
+  .content > header {
+    flex-direction: column;
+  }
+  .song_list {
+    justify-content: center;
+  }
+
+  section.horizontal {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

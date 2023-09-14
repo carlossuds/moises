@@ -41,3 +41,21 @@ button.play {
 button.play:hover {
   filter: drop-shadow(2px 2px 5px var(--white));
 }
+
+@media (max-width: 500px) {
+  .player main {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 410px) {
+  .player,
+  .player footer {
+    width: 18rem;
+    margin: 0;
+  }
+  .player main {
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+}

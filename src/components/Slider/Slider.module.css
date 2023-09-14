@@ -1,5 +1,3 @@
-/* Swipe Styles */
-
 .slider_container {
   --progress-bar-height: 0.25rem;
 }
@@ -9,7 +7,6 @@
   width: 22rem;
 }
 
-/* Background */
 .slider_container::before {
   content: "";
   background-color: white;
@@ -24,7 +21,6 @@
   pointer-events: none;
 }
 
-/* Custom Progress Bar */
 .progress_bar_cover {
   width: 0%;
   height: var(--progress-bar-height);
@@ -82,4 +78,10 @@
 }
 .times span {
   color: #a8a8a8;
+}
+
+@media (max-width: 410px) {
+  .slider_container {
+    width: 100%;
+  }
 }

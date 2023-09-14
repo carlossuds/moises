@@ -25,12 +25,14 @@ export const AppBar = () => {
         </Link>
 
         {router.pathname !== "/" && (
-          <Input
-            value={search ?? ""}
-            options={filteredSongs}
-            onChange={(event) => setSearch(event.target.value ?? "")}
-            placeholder="Search in your library"
-          />
+          <div>
+            <Input
+              value={search ?? ""}
+              options={filteredSongs}
+              onChange={(event) => setSearch(event.target.value ?? "")}
+              placeholder="Search in your library"
+            />
+          </div>
         )}
       </div>
     </div>

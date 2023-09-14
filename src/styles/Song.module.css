@@ -43,6 +43,8 @@
 .image_container {
   height: 12.75rem;
   width: 12.75rem;
+  min-width: 204px;
+  min-height: 204px;
   position: relative;
   border-radius: 0.25rem;
   border: 1px solid #666666;
@@ -57,4 +59,44 @@
   top: -9rem;
   right: -5rem;
   z-index: -1;
+}
+
+@media (max-width: 1104px) {
+  .content {
+    min-width: unset;
+  }
+  .content section ul {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 890px) {
+  .content section:first-of-type {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .content section ul {
+    justify-content: center;
+  }
+  .content {
+    width: 80%;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 660px) {
+  .container {
+    padding: 1rem;
+  }
+  .content section:first-of-type {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .content section ul {
+    justify-content: center;
+  }
+  .content {
+    width: 100%;
+    overflow-x: hidden;
+  }
 }

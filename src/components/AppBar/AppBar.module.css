@@ -27,3 +27,9 @@
   background: linear-gradient(180deg, #00f2d5 0%, #ad00ff 100%);
   background-clip: text;
 }
+
+@media (max-width: 600px) {
+  .content div {
+    display: none;
+  }
+}
