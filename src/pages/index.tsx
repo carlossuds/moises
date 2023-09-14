@@ -3,7 +3,7 @@
 import styles from "@/styles/Home.module.css";
 
 import { FavoriteFilter, Input, SongCard, Toggle } from "@/components";
-import { useFavoriteSongs } from "@/hooks";
+import { useFavoriteSongs, useSongs } from "@/hooks";
 import { SongType } from "@/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -13,25 +13,12 @@ export default function Home() {
   const searchParams = useSearchParams();
   const isFavoriteFilterActive = searchParams.get("filter") === "favorites";
   const isSortedAlphabetically = searchParams.get("sort") === "abc";
-  const searchFilter = searchParams.get("search");
 
-  const [songs, setSongs] = useState<Array<SongType>>([]);
-  const [search, setSearch] = useState(searchFilter);
+  const [search, setSearch] = useState("");
 
   const { favoriteSongs, addToFavorites, removeFromFavorites } =
     useFavoriteSongs();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch(`http://localhost:3003/songs`);
-        const json = await response.json();
-        setSongs(json.songs);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const { songs, filteredSongs } = useSongs({ search });
 
   const onToggleClick = useCallback(() => {
     const url = new URL(window.location.href);
@@ -42,26 +29,6 @@ export default function Home() {
     }
     router.replace(url.href);
   }, [router, isSortedAlphabetically]);
-
-  const filterBySearch = useCallback(
-    (song: SongType) => {
-      if (!search) {
-        return false;
-      }
-      const searchLowerCase = search?.toLowerCase();
-      return (
-        song.id.toString().toLowerCase().includes(searchLowerCase) ||
-        song.song.album.title.toLowerCase().includes(searchLowerCase) ||
-        song.song.album.year
-          .toString()
-          .toLowerCase()
-          .includes(searchLowerCase) ||
-        song.song.title.toLowerCase().includes(searchLowerCase) ||
-        song.song.artist.toLowerCase().includes(searchLowerCase)
-      );
-    },
-    [search]
-  );
 
   const toggleSort = useCallback(
     (a: SongType, b: SongType) => {
@@ -101,7 +68,7 @@ export default function Home() {
               placeholder="Search in your library"
               onChange={(event) => setSearch(event.target.value)}
               value={search ?? ""}
-              options={songs.filter(filterBySearch)}
+              options={filteredSongs}
             />
           </section>
         </header>

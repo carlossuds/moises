@@ -1,6 +1,7 @@
 .container {
   position: relative;
   width: 22.5rem;
+  font-family: "Articulat", helvetica, arial, sans-serif;
 }
 
 .container ul {
