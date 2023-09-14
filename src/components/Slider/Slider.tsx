@@ -74,7 +74,7 @@ export const Slider = ({
 
       <div className={styles.times}>
         <span>{getTime(currentTime)}</span>
-        <span>{getTime(duration)}</span>
+        <span>-{getTime(duration)}</span>
       </div>
     </div>
   );
